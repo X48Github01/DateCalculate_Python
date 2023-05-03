@@ -43,52 +43,6 @@ def calculate_date_diff():
     label_result.config(text=result)
     label_result.config(bg="lightgray", fg="blue", font=("Arial", 16, "bold"))
 
-def reset_date_format():
-    date_format = "%Y-%m-%d"
-
-    # Get the date strings from the input fields
-    date_x = entry_date_x.get_date().strftime(date_format)
-    date_y = entry_date_y.get_date().strftime(date_format)
-
-    # Convert the date strings to datetime objects
-    datetime_x = datetime.datetime.strptime(date_x, date_format)
-    datetime_y = datetime.datetime.strptime(date_y, date_format)
-
-    # Calculate the difference between the dates in days
-    delta = datetime_y - datetime_x
-    days = delta.days
-
-    # Calculate the number of years and months in the delta
-    years = days // 365
-    days -= years * 365
-
-    months = days // 30.44
-    days -= months * 30.44
-
-    # Round months and days to nearest integer
-    months = int(round(months))
-    days = int(round(days))
-
-    # If months equals 12, increment years and set months to 0
-    if months == 12:
-        years += 1
-        months = 0
-
-    # Format the result as "x years y months z days"
-    result = f"ระยะเวลาในการปฏิบัติงานของท่านคือ\n{years} ปี / {months} เดือน / {days} วัน"
-
-    # Update the label with the result
-    label_result.config(text=result)
-    label_result.config(bg="lightgray", fg="blue", font=("Arial", 16, "bold"))
-
-#def reset_date_format():
-#    entry_date_x.delete(0, tk.END)
-#    entry_date_y.delete(0, tk.END)
-#    entry_date_x.config(date_pattern="yyyy-MM-dd")
-#    entry_date_y.config(date_pattern="yyyy-MM-dd")
-#    label_date_x.config(text="Enter Date X :")
-#    label_date_y.config(text="Enter Date Y :")
-
 # Create the GUI
 root = tk.Tk()
 root.geometry("800x600")
@@ -121,10 +75,6 @@ label_explain.pack(pady=20)
 #Create the calculate button
 button_calculate = tk.Button(root, text="Calculate", command=calculate_date_diff, bg="green", fg="white", font=("Arial", 16, "bold"))
 button_calculate.pack(pady=20)
-
-#Create the reset button
-#button_reset = tk.Button(root, text="Reset", command=reset_date_format, bg="red", fg="white", font=("Arial", 14, "bold"))
-#button_reset.pack(pady=10)
 
 #Create the exit button
 button_exit = tk.Button(root, text="Exit", command=root.destroy, bg="red", fg="white", font=("Arial", 14, "bold"))
